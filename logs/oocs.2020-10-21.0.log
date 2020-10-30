@@ -1,0 +1,7 @@
+2020-10-21 09:00:00.001  INFO 79364 --- [scheduling-1] api.dongsheng.task.MailTask              : 1603242000001检测支付情况开始!
+2020-10-21 09:00:00.186  INFO 79364 --- [scheduling-1] api.dongsheng.task.MailTask              : >>>>>>>>>发送邮件：SimpleMailMessage: from=xinhengzhineng@126.com; replyTo=null; to=1050673789@qq.com; cc=; bcc=; sentDate=null; subject=支付统计; text=赠送会员数统计：
+>>山灵领取:0个
+支付金额统计：
+>>未产生支付金额
+
+2020-10-21 09:00:01.754  INFO 79364 --- [scheduling-1] api.dongsheng.task.MailTask              : 1603242001754检测支付情况结束!

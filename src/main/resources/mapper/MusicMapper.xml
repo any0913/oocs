@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.MusicMapper">
+    <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.Music">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="third_id" jdbcType="BIGINT" property="thirdId"/>
+        <result column="album_id" jdbcType="BIGINT" property="albumId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="category_id" jdbcType="BIGINT" property="categoryId"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+        <result column="order_num" jdbcType="INTEGER" property="orderNum"/>
+        <result column="cover" jdbcType="VARCHAR" property="cover"/>
+        <result column="play_url" jdbcType="VARCHAR" property="playUrl"/>
+        <result column="size" jdbcType="INTEGER" property="fileSize"/>
+        <result column="duration" jdbcType="INTEGER" property="duration"/>
+        <result column="source_id" jdbcType="INTEGER" property="sourceId"/>
+        <result column="is_audition" jdbcType="BOOLEAN" property="isAudition"/>
+        <result column="is_free" jdbcType="INTEGER" property="isFree"/>
+        <result column="start_time" jdbcType="VARCHAR" property="startTime"/>
+        <result column="end_time" jdbcType="VARCHAR" property="endTime"/>
+        <result column="week" jdbcType="INTEGER" property="week"/>
+    </resultMap>
+
+    <select id="findMusicList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from music where album_id = #{albumId}
+        <if test="sourceId != null and sourceId != '' ">
+            and source_id in (#{sourceId})
+        </if>
+    </select>
+
+    <select id="selectMusicList" resultMap="BaseResultMap">
+        select * from music where source_id = 5 and is_sync = 0 limit 5000
+    </select>
+
+    <select id="findMusic" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from music where music_id = #{musicId}
+    </select>
+
+    <select id="findMusicById" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from music where id = #{musicId}
+    </select>
+
+    <select id="findMusicBySection" parameterType="api.dongsheng.model.entity.Music" resultMap="BaseResultMap">
+        select * from music where album_id = #{albumId} and order_num = #{orderNum}
+    </select>
+
+    <insert id="insertMusic" parameterType="api.dongsheng.model.entity.Music">
+        insert into
+        music(music_id,album_id,title,category_id,duration,source_id,is_audition,intro,order_num,size,cover,is_free)
+        values
+        (#{musicId},#{albumId},#{title},#{categoryId},#{duration},#{sourceId},#{isAudition},#{intro},#{orderNum},#{fileSize},#{cover},#{isFree})
+    </insert>
+
+
+    <update id="updateList" parameterType="api.dongsheng.model.entity.Music">
+        update music set is_sync = 1
+        <if test="playUrl != null and playUrl != '' ">
+            ,play_url=#{playUrl}
+        </if>
+        where id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.CategoryMapper">
+    <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.ChannelCategory">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="channel_id" jdbcType="BIGINT" property="channelId"/>
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="source_id" jdbcType="INTEGER" property="sourceId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        category_id,category_name,source_id
+    </sql>
+
+    <select id="getChannelCategory" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from channel_category
+            where channel_id = #{channelId} and category_id = #{categoryId} and source_id = #{sourceId}
+    </select>
+
+    <select id="findChannelCategoryList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from channel_category where channel_id = #{channelId} and type = #{type}
+    </select>
+
+    <select id="getChannelDataBySourceId" parameterType="java.util.Map" resultType="api.dongsheng.model.entity.ChannelData">
+        select * from channel_data where channel_id = #{channelId} and channel_source = #{sourceId}
+    </select>
+</mapper>

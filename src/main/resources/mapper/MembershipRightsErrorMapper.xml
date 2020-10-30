@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.MembershipRightsErrorMapper">
+  <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.MembershipRightsError">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="payment_order_id" jdbcType="VARCHAR" property="paymentOrderId" />
+    <result column="requesting_Information" jdbcType="VARCHAR" property="requestingInformation" />
+    <result column="error_message" jdbcType="VARCHAR" property="errorMessage" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, payment_order_id, requesting_Information, error_message, create_time, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from membership_rights_error
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="api.dongsheng.model.entity.MembershipRightsError" useGeneratedKeys="true">
+    insert into membership_rights_error (payment_order_id, requesting_Information, 
+      error_message, create_time, updated_time
+      )
+    values (#{paymentOrderId,jdbcType=VARCHAR}, #{requestingInformation,jdbcType=VARCHAR}, 
+      #{errorMessage,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="api.dongsheng.model.entity.MembershipRightsError" useGeneratedKeys="true">
+    insert into membership_rights_error
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="paymentOrderId != null">
+        payment_order_id,
+      </if>
+      <if test="requestingInformation != null">
+        requesting_Information,
+      </if>
+      <if test="errorMessage != null">
+        error_message,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="paymentOrderId != null">
+        #{paymentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestingInformation != null">
+        #{requestingInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMessage != null">
+        #{errorMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="api.dongsheng.model.entity.MembershipRightsError">
+    update membership_rights_error
+    <set>
+      <if test="paymentOrderId != null">
+        payment_order_id = #{paymentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestingInformation != null">
+        requesting_Information = #{requestingInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMessage != null">
+        error_message = #{errorMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="api.dongsheng.model.entity.MembershipRightsError">
+    update membership_rights_error
+    set payment_order_id = #{paymentOrderId,jdbcType=VARCHAR},
+      requesting_Information = #{requestingInformation,jdbcType=VARCHAR},
+      error_message = #{errorMessage,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

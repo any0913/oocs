@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.AlbumMapper">
+    <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.Album">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="third_id" jdbcType="BIGINT" property="thirdId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="category_id" jdbcType="BIGINT" property="categoryId"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+        <result column="announcer" jdbcType="VARCHAR" property="announcer"/>
+        <result column="cover" jdbcType="VARCHAR" property="cover"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="pay_type" jdbcType="INTEGER" property="payType"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="audio_count" jdbcType="INTEGER" property="musicCount"/>
+        <result column="is_finished" jdbcType="INTEGER" property="isFinished"/>
+        <result column="is_free" jdbcType="INTEGER" property="isFree"/>
+        <result column="sync_order" jdbcType="INTEGER" property="syncOrder"/>
+        <result column="source_id" jdbcType="INTEGER" property="sourceId"/>
+    </resultMap>
+
+    <select id="findAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select third_id,category_id,is_free from album where source_id = #{sourceId}
+    </select>
+
+    <select id="findAlbumList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from album where category_id = #{categoryId}
+        <if test="sourceId != null and sourceId != '' ">
+            and source_id = #{sourceId}
+        </if>
+        <if test="isFree != null and isFree != '' ">
+            and is_free = #{isFree}
+        </if>
+    </select>
+
+    <select id="findAlbum" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from album where third_id = #{albumId} and source_id = #{sourceId}
+    </select>
+
+    <insert id="insertAlbum" parameterType="api.dongsheng.model.entity.Album">
+        insert into
+        album(album_id,title,category_id,intro,cover,announcer,source_id,price,music_count,pay_type,is_finished,is_free)
+        values
+        (#{albumId},#{title},#{categoryId},#{intro},#{cover},#{announcer},#{sourceId},#{price},#{musicCount},#{payType},#{isFinished},#{isFree})
+    </insert>
+
+    <update id="updateAlbum" parameterType="api.dongsheng.model.entity.Album">
+        update album set is_finished = #{isFinished},music_count = #{musicCount}
+        where id = #{id}
+    </update>
+
+</mapper>

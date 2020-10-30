@@ -1,0 +1,70 @@
+2020-10-10 15:20:08.903  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : ========================================== Start ==========================================
+2020-10-10 15:20:08.904  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : URL            : http://localhost:9037/v2/open/ocs/top/list
+2020-10-10 15:20:08.904  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : HTTP Method    : POST
+2020-10-10 15:20:08.904  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : Class Method   : api.dongsheng.controller.TmeCattleController.topList
+2020-10-10 15:20:08.904  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : IP             : 0:0:0:0:0:0:0:1
+2020-10-10 15:20:08.905  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : sign           : a465c1bd31e8981c656107fb99785602
+2020-10-10 15:20:08.905  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : channelId      : 9006
+2020-10-10 15:20:08.905  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : Request Args   : [{"device_id":222222,"userid":"FAD35D399C48348E2AF2C06B99E36081","sp":"KG","token":"a45abba2cebfaf5acadb0c6a5365398efb3b21b353f7ac55c15e16e59c908d0404420189d7c0251eadc3caa72aec62e9"}, api.dongsheng.common.RequestWrapper@461ebfc5]
+2020-10-10 15:20:09.330  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : =========================================== End ===========================================
+2020-10-10 15:20:09.330  INFO 15440 --- [http-nio-9037-exec-8] api.dongsheng.interceptor.WebLogAspect   : 
+2020-10-10 15:20:22.350  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : ========================================== Start ==========================================
+2020-10-10 15:20:22.350  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : URL            : http://localhost:9037/v2/open/ocs/xmly/open_pay/paid_content_ranks
+2020-10-10 15:20:22.350  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : HTTP Method    : POST
+2020-10-10 15:20:22.351  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : Class Method   : api.dongsheng.controller.XmlyController.getPayRanks
+2020-10-10 15:20:22.351  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : IP             : 0:0:0:0:0:0:0:1
+2020-10-10 15:20:22.351  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : sign           : 5aba537c4d535f1f64fce60ecf16dc77
+2020-10-10 15:20:22.351  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : channelId      : 9006
+2020-10-10 15:20:22.351  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : Request Args   : [{"client_os_type":1,"device_id":222222}, api.dongsheng.common.RequestWrapper@7fdc3119]
+2020-10-10 15:20:22.452  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : =========================================== End ===========================================
+2020-10-10 15:20:22.452  INFO 15440 --- [http-nio-9037-exec-9] api.dongsheng.interceptor.WebLogAspect   : 
+2020-10-10 15:21:11.894  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : ========================================== Start ==========================================
+2020-10-10 15:21:11.895  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : URL            : http://localhost:9037/v2/open/ocs/xmly/open_pay/rank_albums
+2020-10-10 15:21:11.895  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : HTTP Method    : POST
+2020-10-10 15:21:11.895  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : Class Method   : api.dongsheng.controller.XmlyController.getPayRankAlbums
+2020-10-10 15:21:11.895  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : IP             : 0:0:0:0:0:0:0:1
+2020-10-10 15:21:11.895  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : sign           : a46bffdc432f39657e486bf25204a5bf
+2020-10-10 15:21:11.895  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : channelId      : 9006
+2020-10-10 15:21:11.895  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : Request Args   : [{"client_os_type":1,"device_id":222222,"rank_key":"ranking:album:newlyPaid:30:0","count":200,"page":1}, api.dongsheng.common.RequestWrapper@41597643]
+2020-10-10 15:21:13.144  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : =========================================== End ===========================================
+2020-10-10 15:21:13.144  INFO 15440 --- [http-nio-9037-exec-10] api.dongsheng.interceptor.WebLogAspect   : 
+2020-10-10 15:23:22.580  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : ========================================== Start ==========================================
+2020-10-10 15:23:22.581  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : URL            : http://localhost:9037/v2/open/ocs/xmly/assisted_sleep/topics
+2020-10-10 15:23:22.581  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : HTTP Method    : POST
+2020-10-10 15:23:22.581  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : Class Method   : api.dongsheng.controller.XmlyController.getTopics
+2020-10-10 15:23:22.581  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : IP             : 0:0:0:0:0:0:0:1
+2020-10-10 15:23:22.581  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : sign           : 1af08b4fcb265ef3517d58113b113406
+2020-10-10 15:23:22.582  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : channelId      : 9006
+2020-10-10 15:23:22.582  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : Request Args   : [{"client_os_type":1,"device_id":222222}, api.dongsheng.common.RequestWrapper@250ba680]
+2020-10-10 15:23:22.666  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : =========================================== End ===========================================
+2020-10-10 15:23:22.666  INFO 15440 --- [http-nio-9037-exec-1] api.dongsheng.interceptor.WebLogAspect   : 
+2020-10-10 15:23:41.844  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : ========================================== Start ==========================================
+2020-10-10 15:23:41.845  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : URL            : http://localhost:9037/v2/open/ocs/xmly/assisted_sleep/cards
+2020-10-10 15:23:41.845  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : HTTP Method    : POST
+2020-10-10 15:23:41.845  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : Class Method   : api.dongsheng.controller.XmlyController.getCards
+2020-10-10 15:23:41.845  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : IP             : 0:0:0:0:0:0:0:1
+2020-10-10 15:23:41.845  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : sign           : 73daea1b54ee085b356e44097512a040
+2020-10-10 15:23:41.845  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : channelId      : 9006
+2020-10-10 15:23:41.845  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : Request Args   : [{"client_os_type":1,"device_id":222222,"topic_id":1}, api.dongsheng.common.RequestWrapper@2d1d29dd]
+2020-10-10 15:23:42.030  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : =========================================== End ===========================================
+2020-10-10 15:23:42.030  INFO 15440 --- [http-nio-9037-exec-4] api.dongsheng.interceptor.WebLogAspect   : 
+2020-10-10 15:23:54.998  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : ========================================== Start ==========================================
+2020-10-10 15:23:54.998  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : URL            : http://localhost:9037/v2/open/ocs/xmly/operation/rank_by_type
+2020-10-10 15:23:54.998  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : HTTP Method    : POST
+2020-10-10 15:23:54.998  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : Class Method   : api.dongsheng.controller.XmlyController.getOperationRank
+2020-10-10 15:23:54.998  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : IP             : 0:0:0:0:0:0:0:1
+2020-10-10 15:23:54.998  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : sign           : 6f13d2b5659a1733257cbd3f947da1dc
+2020-10-10 15:23:54.998  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : channelId      : 9006
+2020-10-10 15:23:54.998  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : Request Args   : [{"client_os_type":1,"device_id":222222,"rank_type":1}, api.dongsheng.common.RequestWrapper@ff936bf]
+2020-10-10 15:23:55.173  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : =========================================== End ===========================================
+2020-10-10 15:23:55.173  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : 
+2020-10-10 15:24:19.128  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : ========================================== Start ==========================================
+2020-10-10 15:24:19.129  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : URL            : http://localhost:9037/v2/open/ocs/xmly/operation/browse_rank_albums
+2020-10-10 15:24:19.129  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : HTTP Method    : POST
+2020-10-10 15:24:19.129  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : Class Method   : api.dongsheng.controller.XmlyController.getOperationRankByAlbums
+2020-10-10 15:24:19.129  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : IP             : 0:0:0:0:0:0:0:1
+2020-10-10 15:24:19.129  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : sign           : e98c5a780eb68e7e6f8e9de43cb8c698
+2020-10-10 15:24:19.129  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : channelId      : 9006
+2020-10-10 15:24:19.130  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : Request Args   : [{"client_os_type":1,"device_id":222222,"count":200,"page":1,"id":55545}, api.dongsheng.common.RequestWrapper@59c52ab]
+2020-10-10 15:24:20.154  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : =========================================== End ===========================================
+2020-10-10 15:24:20.154  INFO 15440 --- [http-nio-9037-exec-6] api.dongsheng.interceptor.WebLogAspect   : 

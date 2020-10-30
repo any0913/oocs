@@ -1,0 +1,10 @@
+2020-10-09 11:32:51.177  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : ========================================== Start ==========================================
+2020-10-09 11:32:51.180  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : URL            : http://localhost:9037/v2/open/ocs/xmly/open_pay/all_paid_albums
+2020-10-09 11:32:51.180  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : HTTP Method    : POST
+2020-10-09 11:32:51.180  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : Class Method   : api.dongsheng.controller.XmlyController.getAllPaidAlbums
+2020-10-09 11:32:51.181  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : IP             : 0:0:0:0:0:0:0:1
+2020-10-09 11:32:51.183  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : sign           : dad44bff8aaa758498462e19b5f56602
+2020-10-09 11:32:51.184  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : channelId      : 9006
+2020-10-09 11:32:51.184  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : Request Args   : [{"client_os_type":1,"device_id":222222}, api.dongsheng.common.RequestWrapper@30f42fbd]
+2020-10-09 11:32:51.507  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : =========================================== End ===========================================
+2020-10-09 11:32:51.507  INFO 15440 --- [http-nio-9037-exec-5] api.dongsheng.interceptor.WebLogAspect   : 

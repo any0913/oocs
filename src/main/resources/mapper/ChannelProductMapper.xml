@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.ChannelProductMapper">
+    <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.ChannelProduct">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="channel_id" jdbcType="BIGINT" property="channel_id"/>
+        <result column="product_id" jdbcType="BIGINT" property="product_id"/>
+        <result column="product_name" jdbcType="VARCHAR" property="product_name"/>
+        <result column="tme_pid" jdbcType="VARCHAR" property="tme_pid"/>
+        <result column="tme_appkey" jdbcType="VARCHAR" property="tme_appkey"/>
+        <result column="tme_member_key" jdbcType="VARCHAR" property="tme_member_key"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,channel_id,product_id,product_name,tme_pid,tme_appkey,tme_member_key
+    </sql>
+
+    <select id="selectChannelProduct" resultMap="BaseResultMap" parameterType="api.dongsheng.model.entity.ChannelProduct">
+        select <include refid="Base_Column_List"/> from channel_product where channel_id = #{channel_id,jdbcType=BIGINT} and product_id = #{product_id}
+    </select>
+
+</mapper>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.MembershipMapper">
+    <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.Membership">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsId"/>
+        <result column="membership_name" jdbcType="VARCHAR" property="membershipName"/>
+        <result column="membership_norms" jdbcType="INTEGER" property="membershipNorms"/>
+        <result column="cost_price" jdbcType="INTEGER" property="costPrice"/>
+        <result column="ruling_price" jdbcType="INTEGER" property="rulingPrice"/>
+        <result column="is_main_push" jdbcType="TINYINT" property="isMainPush"/>
+        <result column="membership_channel" jdbcType="BIGINT" property="membershipChannel"/>
+        <result column="membership_platform" jdbcType="VARCHAR" property="membershipPlatform"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="discount" jdbcType="VARCHAR" property="discount"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
+    </resultMap>
+
+
+    <resultMap id="MemberResultMap" type="api.dongsheng.model.entity.Member">
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsId"/>
+        <result column="membership_name" jdbcType="VARCHAR" property="membershipName"/>
+        <result column="membership_norms" jdbcType="INTEGER" property="membershipNorms"/>
+        <result column="cost_price" jdbcType="INTEGER" property="costPrice"/>
+        <result column="ruling_price" jdbcType="INTEGER" property="rulingPrice"/>
+        <result column="is_main_push" jdbcType="TINYINT" property="isMainPush"/>
+        <result column="discount" jdbcType="VARCHAR" property="discount"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, goods_id, membership_name, membership_norms, cost_price, ruling_price, is_main_push, 
+    membership_channel, membership_platform, `status`, discount, created_time, updated_time
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from membership
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+  <!--   根据会员商品对应下游渠道和会员商品对应上游服务商查询出商品列表  -->
+    <select id="selectMemberList" resultMap="MemberResultMap">
+      select goods_id, membership_name, membership_norms, cost_price, ruling_price, is_main_push, discount
+      from membership
+      where  membership_channel =  #{membershipChannel,jdbcType=BIGINT} and membership_platform =  #{membershipPlatform,jdbcType=VARCHAR}
+      and  `status` = 1
+    </select>
+
+
+<!-- 根据商品ID查询出商品信息 -->
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.String">
+     select goods_id, membership_name, membership_norms, cost_price, ruling_price,membership_channel,
+     membership_platform, `status`
+      from membership
+      where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from membership
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="api.dongsheng.model.entity.Membership"
+            useGeneratedKeys="true">
+    insert into membership (goods_id, membership_name, membership_norms, 
+      cost_price, ruling_price, is_main_push, 
+      membership_channel, membership_platform, `status`, 
+      discount, created_time, updated_time
+      )
+    values (#{goodsId,jdbcType=VARCHAR}, #{membershipName,jdbcType=VARCHAR}, #{membershipNorms,jdbcType=INTEGER}, 
+      #{costPrice,jdbcType=INTEGER}, #{rulingPrice,jdbcType=INTEGER}, #{isMainPush,jdbcType=TINYINT}, 
+      #{membershipChannel,jdbcType=BIGINT}, #{membershipPlatform,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{discount,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="api.dongsheng.model.entity.Membership"
+            useGeneratedKeys="true">
+        insert into membership
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+            <if test="membershipName != null">
+                membership_name,
+            </if>
+            <if test="membershipNorms != null">
+                membership_norms,
+            </if>
+            <if test="costPrice != null">
+                cost_price,
+            </if>
+            <if test="rulingPrice != null">
+                ruling_price,
+            </if>
+            <if test="isMainPush != null">
+                is_main_push,
+            </if>
+            <if test="membershipChannel != null">
+                membership_channel,
+            </if>
+            <if test="membershipPlatform != null">
+                membership_platform,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="discount != null">
+                discount,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                #{goodsId,jdbcType=VARCHAR},
+            </if>
+            <if test="membershipName != null">
+                #{membershipName,jdbcType=VARCHAR},
+            </if>
+            <if test="membershipNorms != null">
+                #{membershipNorms,jdbcType=INTEGER},
+            </if>
+            <if test="costPrice != null">
+                #{costPrice,jdbcType=INTEGER},
+            </if>
+            <if test="rulingPrice != null">
+                #{rulingPrice,jdbcType=INTEGER},
+            </if>
+            <if test="isMainPush != null">
+                #{isMainPush,jdbcType=TINYINT},
+            </if>
+            <if test="membershipChannel != null">
+                #{membershipChannel,jdbcType=BIGINT},
+            </if>
+            <if test="membershipPlatform != null">
+                #{membershipPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="discount != null">
+                #{discount,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="api.dongsheng.model.entity.Membership">
+        update membership
+        <set>
+            <if test="goodsId != null">
+                goods_id = #{goodsId,jdbcType=VARCHAR},
+            </if>
+            <if test="membershipName != null">
+                membership_name = #{membershipName,jdbcType=VARCHAR},
+            </if>
+            <if test="membershipNorms != null">
+                membership_norms = #{membershipNorms,jdbcType=INTEGER},
+            </if>
+            <if test="costPrice != null">
+                cost_price = #{costPrice,jdbcType=INTEGER},
+            </if>
+            <if test="rulingPrice != null">
+                ruling_price = #{rulingPrice,jdbcType=INTEGER},
+            </if>
+            <if test="isMainPush != null">
+                is_main_push = #{isMainPush,jdbcType=TINYINT},
+            </if>
+            <if test="membershipChannel != null">
+                membership_channel = #{membershipChannel,jdbcType=BIGINT},
+            </if>
+            <if test="membershipPlatform != null">
+                membership_platform = #{membershipPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="discount != null">
+                discount = #{discount,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="api.dongsheng.model.entity.Membership">
+    update membership
+    set goods_id = #{goodsId,jdbcType=VARCHAR},
+      membership_name = #{membershipName,jdbcType=VARCHAR},
+      membership_norms = #{membershipNorms,jdbcType=INTEGER},
+      cost_price = #{costPrice,jdbcType=INTEGER},
+      ruling_price = #{rulingPrice,jdbcType=INTEGER},
+      is_main_push = #{isMainPush,jdbcType=TINYINT},
+      membership_channel = #{membershipChannel,jdbcType=BIGINT},
+      membership_platform = #{membershipPlatform,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      discount = #{discount,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

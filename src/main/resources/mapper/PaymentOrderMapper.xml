@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.PaymentOrderMapper">
+  <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.PaymentOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="channel_id" jdbcType="BIGINT" property="channelId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="passport" jdbcType="VARCHAR" property="passport" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_ip" jdbcType="VARCHAR" property="userIp" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="sp" jdbcType="VARCHAR" property="sp" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="order_amount" jdbcType="INTEGER" property="orderAmount" />
+    <result column="payment_order_id" jdbcType="VARCHAR" property="paymentOrderId" />
+    <result column="payment_amount" jdbcType="INTEGER" property="paymentAmount" />
+    <result column="payment_status" jdbcType="TINYINT" property="paymentStatus" />
+    <result column="pay_type" jdbcType="TINYINT" property="payType" />
+    <result column="currency" jdbcType="TINYINT" property="currency" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+    <result column="third_party_order" jdbcType="VARCHAR" property="thirdPartyOrder" />
+    <result column="issued_rights" jdbcType="TINYINT" property="issuedRights" />
+    <result column="rsp_id" jdbcType="VARCHAR" property="rspId" />
+    <result column="revision" jdbcType="INTEGER" property="revision" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, channel_id,product_id,passport, user_id, user_ip, device_id, token, sp, goods_id, order_amount, payment_order_id,
+    payment_amount, payment_status, pay_type, currency, payment_time, third_party_order, 
+    issued_rights, rsp_id, revision, create_time, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from payment_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectByPaymentOrderId" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select channel_id,product_id,passport, user_id, user_ip, device_id, token, sp, goods_id,order_amount, payment_order_id,payment_amount,payment_status,pay_type, issued_rights
+      from payment_order
+      where payment_order_id = #{paymentOrderId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectPaymentOrderByDeviceId" resultMap="BaseResultMap" parameterType="java.util.Map">
+      select * from payment_order
+      where channel_id = #{channelId,jdbcType=BIGINT} and device_id = #{deviceId,jdbcType=BIGINT} and pay_type = 40 and payment_status = 2
+  </select>
+
+  <select id="selectGiveMemberNum" resultType="java.lang.Integer">
+      select count(*) num from payment_order where payment_status = 2 and pay_type = 40 and DATE_FORMAT(updated_time,'%Y-%m-%d') = DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 1 DAY),'%Y-%m-%d')
+  </select>
+
+  <select id="selectPaymentTotalMoney" resultMap="BaseResultMap">
+      select pay_type,sum(payment_amount) payment_amount from payment_order where payment_status = 2 and DATE_FORMAT(updated_time,'%Y-%m-%d') = DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 1 DAY),'%Y-%m-%d') GROUP BY pay_type
+  </select>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="api.dongsheng.model.entity.PaymentOrder" useGeneratedKeys="true">
+    insert into payment_order (channel_id, user_id, user_ip,
+      device_id, token, sp,
+      goods_id, order_amount, payment_order_id, 
+      payment_amount, payment_status, pay_type, 
+      currency, payment_time, third_party_order, 
+      issued_rights, rsp_id, revision, 
+      create_time, updated_time)
+    values (#{channelId,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{userIp,jdbcType=VARCHAR},
+      #{deviceId,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{sp,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=VARCHAR}, #{orderAmount,jdbcType=INTEGER}, #{paymentOrderId,jdbcType=VARCHAR}, 
+      #{paymentAmount,jdbcType=INTEGER}, #{paymentStatus,jdbcType=TINYINT}, #{payType,jdbcType=TINYINT}, 
+      #{currency,jdbcType=TINYINT}, #{paymentTime,jdbcType=TIMESTAMP}, #{thirdPartyOrder,jdbcType=VARCHAR}, 
+      #{issuedRights,jdbcType=TINYINT}, #{rspId,jdbcType=VARCHAR}, #{revision,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="api.dongsheng.model.entity.PaymentOrder" useGeneratedKeys="true">
+    insert into payment_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelId != null">
+        channel_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="passport != null">
+        passport,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userIp != null">
+        user_ip,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="sp != null">
+        sp,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="orderAmount != null">
+        order_amount,
+      </if>
+      <if test="paymentOrderId != null">
+        payment_order_id,
+      </if>
+      <if test="paymentAmount != null">
+        payment_amount,
+      </if>
+      <if test="paymentStatus != null">
+        payment_status,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="paymentTime != null">
+        payment_time,
+      </if>
+      <if test="thirdPartyOrder != null">
+        third_party_order,
+      </if>
+      <if test="issuedRights != null">
+        issued_rights,
+      </if>
+      <if test="rspId != null">
+        rsp_id,
+      </if>
+      <if test="revision != null">
+        revision,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelId != null">
+        #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="passport != null">
+        #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null">
+        #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="sp != null">
+        #{sp,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null">
+        #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="paymentOrderId != null">
+        #{paymentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAmount != null">
+        #{paymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="paymentStatus != null">
+        #{paymentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=TINYINT},
+      </if>
+      <if test="paymentTime != null">
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thirdPartyOrder != null">
+        #{thirdPartyOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedRights != null">
+        #{issuedRights,jdbcType=TINYINT},
+      </if>
+      <if test="rspId != null">
+        #{rspId,jdbcType=VARCHAR},
+      </if>
+      <if test="revision != null">
+        #{revision,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="api.dongsheng.model.entity.PaymentOrder">
+    update payment_order
+    <set>
+      <if test="paymentAmount != null">
+        payment_amount = #{paymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="paymentStatus != null">
+        payment_status = #{paymentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="paymentTime != null">
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thirdPartyOrder != null">
+        third_party_order = #{thirdPartyOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedRights != null">
+        issued_rights = #{issuedRights,jdbcType=TINYINT},
+      </if>
+    </set>
+    where  payment_order_id = #{paymentOrderId,jdbcType=VARCHAR}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="api.dongsheng.model.entity.PaymentOrder">
+    update payment_order
+    set channel_id = #{channelId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=VARCHAR},
+      user_ip = #{userIp,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      sp = #{sp,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      order_amount = #{orderAmount,jdbcType=INTEGER},
+      payment_order_id = #{paymentOrderId,jdbcType=VARCHAR},
+      payment_amount = #{paymentAmount,jdbcType=INTEGER},
+      payment_status = #{paymentStatus,jdbcType=TINYINT},
+      pay_type = #{payType,jdbcType=TINYINT},
+      currency = #{currency,jdbcType=TINYINT},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      third_party_order = #{thirdPartyOrder,jdbcType=VARCHAR},
+      issued_rights = #{issuedRights,jdbcType=TINYINT},
+      rsp_id = #{rspId,jdbcType=VARCHAR},
+      revision = #{revision,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

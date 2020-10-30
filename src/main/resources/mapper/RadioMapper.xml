@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.RadioMapper">
+    <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.Radio">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="third_id" jdbcType="BIGINT" property="thirdId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="category_id" jdbcType="BIGINT" property="categoryId"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+        <result column="cover" jdbcType="VARCHAR" property="cover"/>
+        <result column="source_id" jdbcType="INTEGER" property="sourceId"/>
+        <result column="is_free" jdbcType="INTEGER" property="isFree"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="getRadio" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from radio where category_id = #{categoryId} and source_id = #{sourceId}
+        <if test="isFree != null and isFree != '' ">
+            and is_free = #{isFree}
+        </if>
+    </select>
+
+
+    <select id="getRadioList" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select third_id from radio where category_id = #{categoryId} and deleted = 0
+    </select>
+
+
+    <select id="getRadioById" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from radio where third_id = #{radioId} and source_id = #{sourceId}
+    </select>
+
+</mapper>

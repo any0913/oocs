@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dongsheng.model.mapper.ChannelQuotaMapper">
+    <resultMap id="BaseResultMap" type="api.dongsheng.model.entity.ChannelQuota">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="channel_id" jdbcType="BIGINT" property="channel_id"/>
+        <result column="device_type" jdbcType="VARCHAR" property="device_type"/>
+        <result column="channel_quota" jdbcType="INTEGER" property="channel_quota"/>
+        <result column="quota_mode" jdbcType="INTEGER" property="quota_mode"/>
+        <result column="quota_unit" jdbcType="INTEGER" property="quota_unit"/>
+        <result column="quota_money" jdbcType="INTEGER" property="quota_money"/>
+        <result column="quota_status" jdbcType="INTEGER" property="quota_status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,channel_id,device_type,channel_quota,quota_mode,quota_unit,quota_money,quota_status
+    </sql>
+
+    <select id="selectChannelQuota" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from channel_quota where channel_id = #{channelId,jdbcType=BIGINT} and quota_status = 0
+    </select>
+
+    <update id="updateChannelQuota" parameterType="api.dongsheng.model.entity.ChannelQuota">
+        update channel_quota set channel_quota = channel_quota - 1 where id = #{id}
+    </update>
+
+</mapper>
